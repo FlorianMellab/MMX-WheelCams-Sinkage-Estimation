@@ -1,7 +1,7 @@
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt
-from SNR_classification import percentage_saturated_pixels
+from compute_saturation import percentage_saturated_pixels
 import os
 from imageio import imread
 import skimage

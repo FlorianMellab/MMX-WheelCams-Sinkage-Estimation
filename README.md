@@ -2,7 +2,8 @@
 Image processing pipeline to estimate sinkage from IDEFIX WheelCam images.
 Contact details: Florian Mellab, florian.mellab@gmail.com
 
-# Description of the project:
+# Description of the pipeline:
+
 
 # System requirements: 
 imageio==2.37.0
