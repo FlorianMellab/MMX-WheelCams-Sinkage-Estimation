@@ -10,7 +10,7 @@ from skimage.filters import threshold_otsu
 """
 Wheel edge detection for the front wheel.
 
-This script is designed to detect the edges of a wheel in images captured by a front-facing camera.
+This script is designed to detect the edges of a wheel in images captured by IDEFIX Front WheelCams.
 
 The script requires:
     - The raw images of the front wheel (in .tiff or .png format)
@@ -194,7 +194,6 @@ def find_contours(edges, mask):
     (x,y),radius = cv2.minEnclosingCircle(wheel_contour)
     print("Radius of enclosing circle", int(radius))
 
-
     #Check that the detected contour is a real candidate
     if cv2.contourArea(wheel_contour) > 100000:                 # Area hreshold of 100000 was determined empirically based on visual observation of the contour on the images.
 
@@ -299,8 +298,8 @@ if __name__ == "__main__":
 
         # # Optional cropping of the image to focus on the area where the wheel is expected to be located or for piecewise segmentation. 
         # # Adjust the cropping parameters as needed based on the camera angle and field of view.
-        # image = image[:, :1100]       # Limit the analysis area to the left half of the image 
-        image = image[:, 700:]          # Limit the analysis area to the right half of the image
+        image = image[:, :1100]       # Limit the analysis area to the left half of the image 
+        # image = image[:, 700:]          # Limit the analysis area to the right half of the image
         # image = image[:, 100:1200]    # New angle once the testbed was modified
 
         visualize(image, title="Raw image")
@@ -324,14 +323,14 @@ if __name__ == "__main__":
         ####################################################
 
         # Confidence area parameters where the wheel is expected to be located (its top left corner position (m1, n1) and size (a1, b1)) 
-        m1, n1, a1, b1 = 200, 200, 200, 200         # Right half of the wheel (with piecewise segmentation) 
-        # m1, n1, a1, b1 = 400, 400, 200, 200       # Basic model for full image / Left half of the wheel (with piecewise segmentation) 
+        # m1, n1, a1, b1 = 200, 200, 200, 200         # Right half of the wheel (with piecewise segmentation) 
+        m1, n1, a1, b1 = 400, 400, 200, 200       # Basic model for full image / Left half of the wheel (with piecewise segmentation) 
         # m1, n1, a1, b1 = 150, 0, 200, 200         # Basic model for full image, new camera angle
         conf_area = [m1, n1, a1, b1]
 
         # Brightness segmentation parameters (Pa and Pd) to define the thresholding range.
-        # Pa, Pd = 0.5, 1.5         # Basic model for full image / Left half of the wheel
-        Pa, Pd = 0.7, 1.2           # Optimized for right half (0.7,1.2)
+        Pa, Pd = 0.5, 1.5         # Basic model for full image / Left half of the wheel
+        # Pa, Pd = 0.7, 1.2           # Optimized for right half (0.7,1.2)
 
         # Defining kernel sizes for morphological closing and opening operations. These influence the extent of gap filling and noise removal
         kernel_closing = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10,10))  # Elliptical kernel keeps more natural shape
