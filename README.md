@@ -5,12 +5,15 @@ Image processing pipeline to estimate wheel sinkage from IDEFIX WheelCam images.
 Contact details: Florian Mellab, florian.mellab@gmail.com
 
 # Description of the pipeline:
+To run the full pipeline from raw image to sinakge estimation, the following scripts should be executed:
 
 1. edge_detection_front.py or edge_detection_rear.py (raw image .png or .tiff -> detected contour .mat)
    
-3. ellipse_fit_new.py (detected contour .mat -> ellipse model .mat)
+2. ellipse_fit_new.py (detected contour .mat -> ellipse model .mat)
    
-5. homography.py (ellipse model .mat -> sinkage estimation)
+   Optionally: plot_ellipse.py (For visualisation of the fitted ellipse)
+   
+3. homography.py (ellipse model .mat -> sinkage estimation)
 
 # Other scripts
 
