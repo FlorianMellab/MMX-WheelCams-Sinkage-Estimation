@@ -7,9 +7,9 @@ Contact details: Florian Mellab, florian.mellab@gmail.com
 # Description of the pipeline:
 
 1. edge_detection_front.py or edge_detection_rear.py (raw image .png or .tiff -> detected contour .mat)
-2. 
+   
 3. ellipse_fit_new.py (detected contour .mat -> ellipse model .mat)
-4. 
+   
 5. homography.py (ellipse model .mat -> sinkage estimation)
 
 # Other scripts
